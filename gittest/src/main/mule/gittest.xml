@@ -18,5 +18,6 @@ http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/htt
 				<logger level="INFO" doc:name="Logger" doc:id="06709335-3a8e-404a-ab98-d5ea618b7e3f" message="payload"/>
 			</otherwise>
 		</choice>
+		<logger level="INFO" doc:name="Logger" doc:id="4080fdc4-8001-406a-a3b7-fcfe93a1a4be" message="completed flow"/>
 	</flow>
 </mule>
