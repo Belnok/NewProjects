@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="e8759b9c-8e97-428d-9c7c-092ab07c06bd" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="gittestFlow" doc:id="98906e52-7aa3-4fd5-8cad-a44890a46638" >
+		<http:listener doc:name="Listener" doc:id="eeb7428a-f206-4621-a7cc-c329cce4cadb" config-ref="HTTP_Listener_config" path="git"/>
+		<choice doc:name="Choice" doc:id="c99e919b-9259-42e8-8fb2-b977c16855e3" >
+			<when expression="#[sizeOf(payload) &gt;0]">
+				<set-payload value="Welcome to gitRepo" doc:name="Set Payload" doc:id="cab106b1-b8cb-4c00-9bda-2758599bb332" />
+				<logger level="INFO" doc:name="Logger" doc:id="91cc2171-3046-4e50-a6dc-2317e8713de6" message="#[payload]" />
+			</when>
+			<otherwise >
+				<logger level="INFO" doc:name="Logger" doc:id="06709335-3a8e-404a-ab98-d5ea618b7e3f" message="payload"/>
+			</otherwise>
+		</choice>
+		<logger level="INFO" doc:name="Logger" doc:id="4080fdc4-8001-406a-a3b7-fcfe93a1a4be" message="completed flow"/>
+	</flow>
+</mule>
